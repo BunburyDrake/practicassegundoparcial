@@ -14,6 +14,7 @@ public class Alumno {
 	String grupo;
 	String carrera;
 	DataAlumno da=new DataAlumno();
+	
 	public boolean insertarAlumno() {
 		if(da.insertarAlumno(this)) {
 			return true;

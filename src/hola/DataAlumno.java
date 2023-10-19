@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import RedSocial.Usuario;
+
 public class DataAlumno {
 	Connection cx;
 
@@ -120,5 +122,10 @@ public class DataAlumno {
 			return false;
 		}
 
+	}
+
+	public ArrayList<Usuario> SelectUsuario() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
