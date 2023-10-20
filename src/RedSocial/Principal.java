@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 public class Principal {
 
-	public JFrame frame;
+	public JFrame frmPrincipal;
 	crudComentario crudC=new crudComentario();
 	crudUsuario crudU=new crudUsuario();
 	crudPublicacion crudP=new crudPublicacion();
@@ -24,7 +24,7 @@ public class Principal {
 			public void run() {
 				try {
 					Principal window = new Principal();
-					window.frame.setVisible(true);
+					window.frmPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,21 +43,22 @@ public class Principal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Alumno\\Downloads\\6.png"));
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmPrincipal = new JFrame();
+		frmPrincipal.setTitle("Principal");
+		frmPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Alumno\\Downloads\\6.png"));
+		frmPrincipal.setBounds(100, 100, 450, 300);
+		frmPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmPrincipal.getContentPane().setLayout(null);
 		
 		JButton btnUsuario = new JButton("Usuario");
 		btnUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				crudU.frame.setVisible(true);
+				crudU.frmUsuario.setVisible(true);
 			}
 		});
 		btnUsuario.setBounds(265, 11, 159, 57);
-		frame.getContentPane().add(btnUsuario);
+		frmPrincipal.getContentPane().add(btnUsuario);
 		
 		JButton btnPulicacion = new JButton("Publicacion");
 		btnPulicacion.addActionListener(new ActionListener() {
@@ -68,7 +69,7 @@ public class Principal {
 			
 		});
 		btnPulicacion.setBounds(10, 11, 132, 57);
-		frame.getContentPane().add(btnPulicacion);
+		frmPrincipal.getContentPane().add(btnPulicacion);
 		
 		JButton btnComentario = new JButton("Comentario");
 		btnComentario.addActionListener(new ActionListener() {
@@ -78,6 +79,6 @@ public class Principal {
 			}
 		});
 		btnComentario.setBounds(10, 79, 132, 57);
-		frame.getContentPane().add(btnComentario);
+		frmPrincipal.getContentPane().add(btnComentario);
 	}
 }

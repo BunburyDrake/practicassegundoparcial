@@ -1,5 +1,6 @@
 package RedSocial;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,13 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import hola.Alumno;
-import hola.DataAlumno;
+
+
 
 public class DataUsuario {
 	Connection cx;
 
 	public static void main(String[] ola) {
-		DataAlumno da = new DataAlumno();
+		DataUsuario da = new DataUsuario();
 		da.conectar();
 	}
 
@@ -68,6 +70,40 @@ public class DataUsuario {
 		}
 		return ListaUsuario;
 	}
+	public boolean EliminarUsuario(int IDUSER) {
+		PreparedStatement ps;
+		try {
+			ps = conectar().prepareStatement("DELETE FROM usuario WHERE iduser=?");
+			ps.setInt(1, IDUSER);
+			System.out.println(ps.toString());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	public boolean actualizarUsuario(Usuario a) {
+		PreparedStatement ps;
+		try {
+			ps = conectar().prepareStatement(
+					"UPDATE usuario SET Correo=?,Telefono=?,Pasword=?,Nombre=? WHERE iduser=?");
+			ps.setString(1, a.getCorreo());
+			ps.setString(2, a.getTelefono());
+			ps.setString(3, a.getPasword());
+			ps.setString(4, a.getNombre());
+			ps.setInt(5, a.getIduser());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
 
 
 }
+

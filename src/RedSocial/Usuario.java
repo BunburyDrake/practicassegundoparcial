@@ -1,7 +1,5 @@
 package RedSocial;
 
-import hola.DataAlumno;
-
 public class Usuario {
 int iduser;
 String correo;
@@ -9,8 +7,12 @@ String telefono;
 String pasword;
 String nombre;
 DataUsuario da=new DataUsuario();
+private int Iduser;
 
 
+
+public Usuario() {
+}
 public boolean insertarUsuario() {
 	if(da.insertarUsuario(this)) {
 		return true;
@@ -18,23 +20,33 @@ public boolean insertarUsuario() {
 		return false;
 	}
 }
-
-
-public Usuario() {
+public boolean EliminarUsuario() {
+	if(da.EliminarUsuario(this.getIduser())) {
+		return true;
+	}else {
+		return false;
+	}
 }
-public Usuario(int iduser, String correo, String telefono, String pasword, String nombre) {
+public boolean actualizarUsuario() {
+	if(da.actualizarUsuario(this)) {
+		return true;
+	}else {
+		return false;
+	}
+}
+public Usuario(int Iduser, String correo, String telefono, String pasword, String nombre) {
 	
-	this.iduser = iduser;
+	this.Iduser = Iduser;
 	this.correo = correo;
 	this.telefono = telefono;
 	this.pasword = pasword;
 	this.nombre = nombre;
 }
 public int getIduser() {
-	return iduser;
+	return Iduser;
 }
-public void setIduser(int iduser) {
-	this.iduser = iduser;
+public void setIduser(int Iduser) {
+	this.Iduser = Iduser;
 }
 public String getCorreo() {
 	return correo;
