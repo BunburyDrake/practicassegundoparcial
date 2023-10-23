@@ -32,10 +32,9 @@ public class DataPublicacion {
 	public boolean insertarPublicacion(Publicacion p) {
 		PreparedStatement ps;
 		try {
-			ps = conectar().prepareStatement("INSERT INTO publicacion VALUES(null,?,null,?)");
+			ps = conectar().prepareStatement("INSERT INTO publicacion VALUES(null,?,?,null)");
 			ps.setInt(1, p.getIduser());
 			ps.setString(2, p.getTexto());
-			
 			ps.execute();
 			return true;
 		} catch (SQLException e) {
