@@ -64,7 +64,7 @@ public class Principal {
 		btnPulicacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				crudP.frame.setVisible(true);
+				crudP.crudP.setVisible(true);
 			}
 			
 		});

@@ -51,12 +51,13 @@ public class crudUsuario {
 
 		lista = da.SelectUsuario();
 		for (Usuario Alumnoss : lista) {
-			Object o[] = new Object[12];
+			Object o[] = new Object[5];
 			o[0] = Alumnoss.getIduser();
 			o[1] = Alumnoss.getCorreo();
 			o[2] = Alumnoss.getTelefono();
 			o[3] = Alumnoss.getPasword();
 			o[4] = Alumnoss.getNombre();
+		
 			
 			model.addRow(o);
 

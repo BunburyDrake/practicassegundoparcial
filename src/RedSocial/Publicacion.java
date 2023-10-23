@@ -5,30 +5,18 @@ int Idpub;
 int Iduser;
 String Texto;
 String Fecha;
+DataPublicacion dp=new DataPublicacion();
 public Publicacion() {
-	
 }
 public boolean insertarPublicacion() {
-	if(da.insertarPublicacion(this)) {
+	if(dp.insertarPublicacion(this)) {
 		return true;
 	}else {
 		return false;
 	}
 }
-public boolean EliminarPublicacion() {
-	if(da.EliminarUsuario(this.getIdpub())) {
-		return true;
-	}else {
-		return false;
-	}
-}
-public boolean actualizarPublicacion() {
-	if(da.actualizarPublicacion(this)) {
-		return true;
-	}else {
-		return false;
-	}
-}
+
+
 public Publicacion(int Idpub, int Iduser, String Texto, String Fecha) {
 	
 	this.Idpub = Idpub;
@@ -39,26 +27,26 @@ public Publicacion(int Idpub, int Iduser, String Texto, String Fecha) {
 public int getIdpub() {
 	return Idpub;
 }
-public void setIdpub(int idpub) {
-	Idpub = idpub;
+public void setIdpub(int Idpub) {
+	Idpub = Idpub;
 }
 public int getIduser() {
 	return Iduser;
 }
-public void setIduser(int iduser) {
-	Iduser = iduser;
+public void setIduser(int Iduser) {
+	Iduser = Iduser;
 }
 public String getTexto() {
 	return Texto;
 }
-public void setTexto(String texto) {
-	Texto = texto;
+public void setTexto(String Texto) {
+	Texto = Texto;
 }
 public String getFecha() {
 	return Fecha;
 }
-public void setFecha(String fecha) {
-	Fecha = fecha;
+public void setFecha(String Fecha) {
+	Fecha = Fecha;
 }
 
 

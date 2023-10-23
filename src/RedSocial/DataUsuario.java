@@ -84,6 +84,7 @@ public class DataUsuario {
 		}
 
 	}
+
 	public boolean actualizarUsuario(Usuario a) {
 		PreparedStatement ps;
 		try {
@@ -101,9 +102,12 @@ public class DataUsuario {
 			return false;
 		}
 
-	}
+	
 
 
 
+}
+
+	
 }
 

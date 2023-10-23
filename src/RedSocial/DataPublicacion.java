@@ -11,8 +11,8 @@ public class DataPublicacion {
 	Connection cx;
 
 	public static void main(String[] ola) {
-		DataPublicacion da = new DataPublicacion();
-		da.conectar();
+		DataPublicacion da1 = new DataPublicacion();
+		da1.conectar();
 	}
 
 	public DataPublicacion() {
