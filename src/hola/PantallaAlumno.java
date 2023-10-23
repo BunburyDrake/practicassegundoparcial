@@ -350,6 +350,11 @@ public class PantallaAlumno {
 
 		frmCrudAlumno.getContentPane().add(btnAgregar);
 		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
+			}
+		});
 		btnBorrar.setBounds(109, 341, 89, 23);
 		frmCrudAlumno.getContentPane().add(btnBorrar);
 

@@ -55,7 +55,7 @@ public class crudPublicacion {
 
 		listaPub = dp.SelectPublicacion();
 		for (Publicacion u : listaPub) {
-			Object o[] = new Object[5];
+			Object o[] = new Object[4];
 			o[0] = u.getIdpub();
 			o[1] = getNombre(u.getIduser());
 			o[2] = u.getTexto();
@@ -105,7 +105,7 @@ public class crudPublicacion {
 					JOptionPane.showMessageDialog(null, "se insertio correctamente");
 					actualizarTabla();
 				}else {
-					JOptionPane.showMessageDialog(null, "error");
+					JOptionPane.showMessageDialog(null, "Error");
 				}
 				}catch(Exception e2){
 					JOptionPane.showMessageDialog(null, "error");
@@ -139,7 +139,7 @@ public class crudPublicacion {
 		tblPublicacion = new JTable();
 		model.addColumn("ID PUB");
 		model.addColumn("Usuario");
-		model.addColumn("TEXTO");
+		model.addColumn("Texto");
 		model.addColumn("Fecha");
 		tblPublicacion.setModel(model);
 		scrollPane.setViewportView(tblPublicacion);

@@ -17,6 +17,7 @@ public class DataPublicacion {
 
 	public DataPublicacion() {
 	}
+	
 
 	public Connection conectar() {
 		try {
@@ -28,13 +29,12 @@ public class DataPublicacion {
 		}
 		return cx;
 	}
-
-	public boolean insertarPublicacion(Publicacion a) {
+	public boolean insertarPublicacion(Publicacion p) {
 		PreparedStatement ps;
 		try {
-			ps = conectar().prepareStatement("INSERT INTO publicacion VALUES(null,?,?)");
-			ps.setString(1, a.getTexto());
-			ps.setString(2, a.getFecha());
+			ps = conectar().prepareStatement("INSERT INTO publicacion VALUES(null,?,null,?)");
+			ps.setInt(1, p.getIduser());
+			ps.setString(2, p.getTexto());
 			
 			ps.execute();
 			return true;
@@ -42,8 +42,11 @@ public class DataPublicacion {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
+
+	
+
+
 	public ArrayList<Publicacion> SelectPublicacion() {
 		ArrayList<Publicacion> ListaPublicacion = new ArrayList<Publicacion>();
 		try {
@@ -81,11 +84,11 @@ public class DataPublicacion {
 		PreparedStatement ps;
 		try {
 			ps = conectar().prepareStatement(
-					"UPDATE usuario SET Texto=?,Fecha=?,Iduser=? WHERE idpub=?");
+					"UPDATE publicacion SET texto=?,fecha=?,iduser=? WHERE idpub=?");
 			ps.setString(1, a.getTexto());
 			ps.setString(2, a.getFecha());
-			ps.setInt(4, a.getIduser());
-			ps.setInt(5, a.getIdpub());
+			ps.setInt(3, a.getIduser());
+			ps.setInt(4, a.getIdpub());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {
