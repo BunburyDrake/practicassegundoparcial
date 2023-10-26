@@ -24,52 +24,57 @@ public class crudPublicacion {
 	public JFrame crudP;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
-	private JTable tblPublicacion;
+	private JTable tblPublicaciones;
 	private JLabel lblNewLabel;
 	private JButton btnAgrgar;
 	private JButton btnActualizar;
 	private JButton btnBorrar;
 	private JComboBox cmbUser;
+	private JButton btnEliminar;
 	ArrayList<Usuario> listaUsuario=null;
-	ArrayList<Publicacion> listaPub;
-	public DefaultTableModel model= new DefaultTableModel();
-	public DefaultComboBoxModel modelCombo= new DefaultComboBoxModel();
+	ArrayList<Publicacion> listaPub=null;
+	DefaultTableModel modelo=new DefaultTableModel();
+	DefaultComboBoxModel modelCombo=null;
+	DataPublicacion dp=new DataPublicacion();
+	
 	public crudPublicacion() {
 		initialize();
 		DataUsuario du=new DataUsuario();
 		listaUsuario=du.SelectUsuario();
 		Object nombresUsuario[]=new Object[listaUsuario.size()];
-		for(int i=0;i < listaUsuario.size();i++) {
+		for (int i = 0; i < listaUsuario.size(); i++) {
 			nombresUsuario[i]=listaUsuario.get(i).getNombre();
 		}
+		
 		modelCombo=new DefaultComboBoxModel(nombresUsuario);
 		cmbUser.setModel(modelCombo);
 		actualizarTabla();
 	}
+	
 	public void actualizarTabla() {
 		DataPublicacion dp = new DataPublicacion();
 
-		while (model.getRowCount() > 0) {
-			model.removeRow(0);
+		while (modelo.getRowCount() > 0) {
+			modelo.removeRow(0);
 		}
 
-		listaPub = dp.SelectPublicacion();
+		listaPub = dp.SelectPublicaciones();
 		for (Publicacion u : listaPub) {
 			Object o[] = new Object[4];
-			o[0] = u.getIdpub();
+			o[0] = u.getIdPub();
 			o[1] = getNombre(u.getIduser());
 			o[2] = u.getTexto();
 			o[3] = u.getFecha();
-			model.addRow(o);
+			modelo.addRow(o);
 
 		}
-		tblPublicacion.setModel(model);
+		tblPublicaciones.setModel(modelo);
 	}
 
-	public String getNombre(int Iduser) {
+	public String getNombre(int idUser) {
 		String nombre="";
 		for (Usuario u : listaUsuario) {
-			if(u.getIduser()==Iduser) {
+			if(u.getIduser()==idUser) {
 				nombre=u.getNombre();
 			}
 			
@@ -99,7 +104,7 @@ public class crudPublicacion {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				Publicacion p=new Publicacion();
-				p.setIduser(listaUsuario.get(cmbUser.getSelectedIndex()).getIduser());
+				p.setIdUser(listaUsuario.get(cmbUser.getSelectedIndex()).getIduser());
 				p.setTexto(textArea.getText());
 				if(p.insertarPublicacion()) {
 					JOptionPane.showMessageDialog(null, "se insertio correctamente");
@@ -115,7 +120,7 @@ public class crudPublicacion {
 		btnAgrgar.setBounds(263, 18, 89, 23);
 		crudP.getContentPane().add(btnAgrgar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(263, 51, 89, 23);
 		crudP.getContentPane().add(btnEliminar);
 		
@@ -136,13 +141,13 @@ public class crudPublicacion {
 		scrollPane.setBounds(10, 153, 414, 191);
 		crudP.getContentPane().add(scrollPane);
 		
-		tblPublicacion = new JTable();
-		model.addColumn("ID PUB");
-		model.addColumn("Usuario");
-		model.addColumn("Texto");
-		model.addColumn("Fecha");
-		tblPublicacion.setModel(model);
-		scrollPane.setViewportView(tblPublicacion);
+		tblPublicaciones = new JTable();
+		modelo.addColumn("ID PUB");
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Texto");
+		modelo.addColumn("Fecha");
+		tblPublicaciones.setModel(modelo);
+		scrollPane.setViewportView(tblPublicaciones);
 		
 	}
 }

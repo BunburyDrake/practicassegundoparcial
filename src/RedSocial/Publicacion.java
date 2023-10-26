@@ -1,54 +1,49 @@
 package RedSocial;
 
 public class Publicacion {
-int Idpub;
+int idPub;
 int Iduser;
-String Texto;
-String Fecha;
+String texto;
+String fecha;
 DataPublicacion dp=new DataPublicacion();
-public Publicacion() {
+public Publicacion(){
+	
 }
+
 public boolean insertarPublicacion() {
-	if(dp.insertarPublicacion(this)) {
+	if(dp.insertarPublciacion(this)) {
 		return true;
 	}else {
 		return false;
 	}
-}
-
-
-public Publicacion(int Idpub, int Iduser, String Texto, String Fecha) {
 	
-	this.Idpub = Idpub;
-	this.Iduser = Iduser;
-	this.Texto = Texto;
-	this.Fecha = Fecha;
 }
-public int getIdpub() {
-	return Idpub;
+
+
+public int getIdPub() {
+	return idPub;
 }
-public void setIdpub(int Idpub) {
-	Idpub = Idpub;
+public void setIdPub(int idPub) {
+	this.idPub = idPub;
 }
 public int getIduser() {
 	return Iduser;
 }
-public void setIduser(int Iduser) {
-	Iduser = Iduser;
+public void setIdUser(int Iduser) {
+	this.Iduser = Iduser;
 }
 public String getTexto() {
-	return Texto;
+	return texto;
 }
-public void setTexto(String Texto) {
-	Texto = Texto;
+public void setTexto(String texto) {
+	this.texto = texto;
 }
 public String getFecha() {
-	return Fecha;
+	return fecha;
 }
-public void setFecha(String Fecha) {
-	Fecha = Fecha;
+public void setFecha(String fecha) {
+	this.fecha = fecha;
 }
-
 
 
 
