@@ -1,5 +1,4 @@
 package RedSocial;
-
 public class Publicacion {
 int idPub;
 int Iduser;
@@ -17,6 +16,20 @@ public boolean insertarPublicacion() {
 		return false;
 	}
 	
+}
+public boolean EliminarPublicacion() {
+	if(dp.EliminarPublicacion(this.getIdPub())) {
+		return true;
+	}else {
+		return false;
+	}
+}
+public boolean actualizarPublicacion() {
+	if(dp.actualizarPublicacion(this)) {
+		return true;
+	}else {
+		return false;
+	}
 }
 
 

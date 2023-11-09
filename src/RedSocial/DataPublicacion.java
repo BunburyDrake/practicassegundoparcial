@@ -1,11 +1,12 @@
 package RedSocial;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+
 
 public class DataPublicacion {
 	Connection cx;
@@ -62,6 +63,37 @@ public class DataPublicacion {
 
 		}
 		return ListaPublicaciones;
+	}
+	public boolean EliminarPublicacion(int idPub) {
+		PreparedStatement ps;
+		try {
+			ps = conectar().prepareStatement("DELETE FROM publicacion WHERE idpub=?");
+			ps.setInt(1, idPub);
+			System.out.println(ps.toString());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public boolean actualizarPublicacion(Publicacion a) {
+		PreparedStatement ps;
+		try {
+			ps = conectar().prepareStatement(
+					"UPDATE publicacion SET iduser=?,texto=? WHERE idpub=?");
+			ps.setInt(1, a.getIduser());
+			ps.setString(2, a.getTexto());
+			ps.setInt(3, a.getIdPub());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 	}
