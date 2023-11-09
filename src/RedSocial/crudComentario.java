@@ -105,11 +105,12 @@ public class crudComentario {
 		   }
 		  }
 		  return pub;
+		  
 		 }	
 		 public String getNombre(int idUser) {
 		  String nombre = null;
 		  for (Usuario u: listaUsuario) {
-		   if(u.getIduser()> idUser){
+		   if(u.getIduser()== idUser){
 		    nombre = u.getNombre();
 		    
 		   }
