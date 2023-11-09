@@ -29,7 +29,7 @@ public class DataComentario {
 		return cx;
 	}
 
-	public boolean insertarComentario(comentario p) {
+	public boolean insertarComentario(Comentario p) {
 		PreparedStatement ps;
 		try {
 			ps = conectar().prepareStatement("INSERT INTO comentario VALUES(null,?,?,?,null)");
@@ -44,13 +44,13 @@ public class DataComentario {
 			return false;
 		}
 	}
-	public ArrayList<comentario> SelectComentario() {
-		ArrayList<comentario> ListaComentarios = new ArrayList<comentario>();
+	public ArrayList<Comentario> SelectComentario() {
+		ArrayList<Comentario> ListaComentarios = new ArrayList<Comentario>();
 		try {
 			PreparedStatement ps = conectar().prepareStatement("SELECT * FROM comentario");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				comentario x = new comentario();
+				Comentario x = new Comentario();
 				x.setIdCom(rs.getInt(1));
 				x.setIdUser(rs.getInt(2));
 				x.setIdPub(rs.getInt(3));
@@ -79,7 +79,7 @@ public class DataComentario {
 		}
 
 	}
-	public boolean actualizarComentario(comentario a) {
+	public boolean actualizarComentario(Comentario a) {
 		PreparedStatement ps;
 		try {
 			ps = conectar().prepareStatement(

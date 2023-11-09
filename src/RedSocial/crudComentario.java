@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class crudComentario {
 
@@ -24,16 +25,17 @@ public class crudComentario {
 	private JTable tblComentarios;
 	 ArrayList<Usuario> listaUsuario=null;
 	 ArrayList<Publicacion>listaPub=null;
-	 ArrayList<comentario>listaCom=null;
+	 ArrayList<Comentario>listaCom=null;
 	 DefaultTableModel model=new DefaultTableModel();
 	 DefaultComboBoxModel modelCombo=null;
 	 DefaultComboBoxModel modelCombo2=null;
 	 DataComentario dc=new DataComentario();
-	 comentario p=null;
+	 Comentario p=null;
 	 int fila=0;
 	 private JComboBox cmbPub;
 	 private JComboBox cmbUser;
 	 private JTextArea txtTexto;
+	 private JLabel lblID;
 
 	/**
 	 * Launch the application.
@@ -84,11 +86,11 @@ public class crudComentario {
 		   model.removeRow(0);
 		   }
 		   listaCom = dc.SelectComentario();
-		   for (comentario u : listaCom) {
+		   for (Comentario u : listaCom) {
 		    Object o[]=new Object[5];
 		    o[0]=u.getIdCom();
-		    o[1]=getNombre(u.getIdUser());
-		    o[2]=getPub(u.getIdPub());
+		    o[1]=u.getIdPub();
+		    o[2]=u.getIdUser();
 		    o[3]=u.getTexto();
 		    o[4]=u.getFecha();
 		    
@@ -118,7 +120,7 @@ public class crudComentario {
 		  return nombre;
 		 }
 		
-		  public int seleccionarUsuario(comentario p) {
+		  public int seleccionarUsuario(Comentario p) {
 		   int pos =0;
 		   for (Publicacion u : listaPub) {
 		   if (u.getIduser() == p.getIdPub()) {
@@ -135,20 +137,21 @@ public class crudComentario {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Alumno\\Downloads\\6.png"));
 		frame.setTitle("Comentario");
 		frame.setBounds(100, 100, 706, 526);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("ID:");
 		lblNewLabel.setBounds(10, 11, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblID = new JLabel("New label");
+		lblID = new JLabel("ID");
 		lblID.setBounds(66, 11, 46, 14);
 		frame.getContentPane().add(lblID);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Usuario");
 		lblNewLabel_2.setBounds(10, 36, 46, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
@@ -160,11 +163,11 @@ public class crudComentario {
 		cmbPub.setBounds(66, 61, 106, 22);
 		frame.getContentPane().add(cmbPub);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("New label");
+		JLabel lblNewLabel_2_1 = new JLabel("Publicacion");
 		lblNewLabel_2_1.setBounds(10, 65, 46, 14);
 		frame.getContentPane().add(lblNewLabel_2_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
+		JLabel lblNewLabel_3 = new JLabel("texto");
 		lblNewLabel_3.setBounds(10, 87, 46, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
@@ -176,13 +179,14 @@ public class crudComentario {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-				     comentario p= new comentario();
+				     Comentario p= new Comentario();
 				     p.setIdUser(listaUsuario.get(cmbUser.getSelectedIndex()).getIduser());
 				     p.setIdPub(listaPub.get(cmbPub.getSelectedIndex()).getIdPub());
 				     p.setTexto(txtTexto.getText());
 				     if(p.insertarComentario()) {
 				      JOptionPane.showConfirmDialog(null, "se inserto correctamente");
 				      actualizarTabla();
+				      limpiar();
 				     }else {
 				      JOptionPane.showConfirmDialog(null, "ERROR");
 				     }
@@ -219,6 +223,7 @@ public class crudComentario {
 		 	     if(p.EliminarComentario()) {
 		 	      JOptionPane.showConfirmDialog(null, "se inserto correctamente");
 		 	      actualizarTabla();
+		 	      limpiar();
 		 	     }else {
 		 	      JOptionPane.showConfirmDialog(null, "ERROR");
 		 	     }
@@ -237,7 +242,8 @@ public class crudComentario {
 		 		     p.setTexto(txtTexto.getText());
 		 		     if(p.actualizarComentario()) {
 		 		      JOptionPane.showConfirmDialog(null, "se inserto correctamente");
-		 		      actualizarTabla();
+		 		     actualizarTabla();
+		 		     limpiar();
 		 		     }else {
 		 		      JOptionPane.showConfirmDialog(null, "ERROR");
 		 		     }
@@ -257,5 +263,9 @@ public class crudComentario {
 		  model.addColumn("FECHA");
 		  tblComentarios.setModel(model);
 		  scrollPane.setViewportView(tblComentarios);
+	}
+	public void limpiar() {
+		txtTexto.setText("");
+		lblID.setText("0");
 	}
 }

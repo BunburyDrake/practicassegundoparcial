@@ -1,13 +1,13 @@
 package RedSocial;
 
-public class comentario {
+public class Comentario {
 int IdCom;
 int IdPub;
 int IdUser;
 String texto;
 String fecha;
 DataComentario dh=new DataComentario();
-public comentario() {}
+public Comentario() {}
 
 public boolean insertarComentario() {
 	if(dh.insertarComentario(this)) {
